@@ -6,13 +6,11 @@
 <title>For Nandani ❤️</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
 
-body{
-overflow:hidden;
-}
+body{overflow:hidden;}
 
-/* Background Video */
+/* VIDEO */
 video{
 position:fixed;
 right:0;
@@ -21,45 +19,57 @@ min-width:100%;
 min-height:100%;
 object-fit:cover;
 z-index:-2;
-transition:0.8s ease;
+transition:1s ease;
 }
 
-.overlay{
-position:fixed;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.3);
-z-index:-1;
-transition:0.8s ease;
-}
-
-/* Blur Effect */
 .blur{
 filter:blur(8px);
 transform:scale(1.05);
 }
 
-/* Center Container */
+/* OVERLAY */
+.overlay{
+position:fixed;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.4);
+z-index:-1;
+}
+
+/* CENTER CONTENT */
 .center{
 position:absolute;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
 text-align:center;
+color:white;
 }
 
-/* Envelope */
+/* BUTTON */
+.btn{
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:#ff4d6d;
+color:white;
+font-size:16px;
+cursor:pointer;
+margin-top:20px;
+}
+
+/* ENVELOPE */
 .envelope{
 width:280px;
 height:180px;
 background:#f5e6d3;
-position:relative;
 border-radius:10px;
+position:relative;
 box-shadow:0 10px 30px rgba(0,0,0,0.4);
-transition:1.5s ease;
+margin:auto;
+display:none;
 }
 
-/* Flap */
 .flap{
 position:absolute;
 width:0;
@@ -68,12 +78,14 @@ border-left:140px solid transparent;
 border-right:140px solid transparent;
 border-bottom:90px solid #e6d2bd;
 top:-90px;
-left:0;
 transition:1.5s ease;
 transform-origin:bottom;
 }
 
-/* Heart Button */
+.open .flap{
+transform:rotateX(180deg);
+}
+
 .heart{
 position:absolute;
 top:50%;
@@ -90,49 +102,52 @@ animation:pulse 1.5s infinite;
 100%{transform:translate(-50%,-50%) scale(1);}
 }
 
-/* Shake animation */
-.shake{
-animation:shake 0.4s;
-}
-
-@keyframes shake{
-0%{transform:translate(-50%,-50%) rotate(0deg);}
-25%{transform:translate(-50%,-50%) rotate(2deg);}
-50%{transform:translate(-50%,-50%) rotate(-2deg);}
-75%{transform:translate(-50%,-50%) rotate(2deg);}
-100%{transform:translate(-50%,-50%) rotate(0deg);}
-}
-
-/* Open State */
-.open .flap{
-transform:rotateX(180deg);
-}
-
-/* Letter */
+/* LETTER */
 .letter{
 position:absolute;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
 width:90%;
-max-width:400px;
-background:white;
+max-width:420px;
 padding:25px;
 border-radius:15px;
+background:linear-gradient(135deg,#ffe6f0,#fff0f5,#e6f7ff);
 box-shadow:0 15px 40px rgba(0,0,0,0.5);
 display:none;
 opacity:0;
 transition:1s ease;
+color:#333;
 }
 
-.letter h2{
-text-align:center;
-margin-bottom:15px;
-}
-
-.show-letter{
+.show{
 display:block;
 opacity:1;
+}
+
+.letter h2{text-align:center;margin-bottom:15px;color:#ff4d6d;}
+
+/* PROMISE PAGE */
+.promise{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:90%;
+max-width:400px;
+text-align:center;
+color:white;
+display:none;
+}
+
+.promise p{
+margin:10px 0;
+opacity:0;
+animation:fadeIn 1s forwards;
+}
+
+@keyframes fadeIn{
+to{opacity:1;}
 }
 </style>
 </head>
@@ -145,6 +160,14 @@ opacity:1;
 
 <div class="overlay"></div>
 
+<!-- WELCOME -->
+<div class="center" id="welcome">
+<h1>Happy Holi My Love ❤️</h1>
+<p>I am your Raj, your pookie 💕</p>
+<button class="btn" onclick="startEnvelope()">Tap To Begin 💌</button>
+</div>
+
+<!-- ENVELOPE -->
 <div class="center">
 <div class="envelope" id="envelope">
 <div class="flap"></div>
@@ -152,71 +175,67 @@ opacity:1;
 </div>
 </div>
 
+<!-- LETTER -->
 <div class="letter" id="letter">
 <h2>My Letter To You 💌</h2>
 <p>
 Nandani,<br><br>
-
-Sabse pehle… I’m really sorry.  
-Main maanta hoon meri galti thi.  
-Mujhe tumhe batana chahiye tha.<br><br>
-
-Par jab tum mujhse door rehti ho na…  
-sach me dil heavy ho jata hai.  
-Tum hi bolti ho na — hum dono ek hain ❤️<br><br>
-
-Mujhe abhi tak yaad hai wo din  
-jab tum pehli baar rusi thi…  
-bench pe jaake baith gayi thi,  
-aur jab main gaya tha…  
-gussa karne ke jagah tum sharmaane lagi thi 💕<br><br>
-
-Main ladka hoon, galti ho jaati hai…  
-par tum meri life ka sabse important part ho.  
+I’m really sorry… I know meri galti thi.  
+Par jab tum door rehti ho na, dil heavy ho jata hai.  
+Tum hi bolti ho hum dono ek hain ❤️<br><br>
+Mujhe abhi tak yaad hai jab tum pehli baar rusi thi,  
+aur gussa karne ke jagah sharmaane lagi thi 💕<br><br>
 Hamra relationship sabse acha hai,  
-bas time thoda sa tough chal raha hai.<br><br>
-
+bas time thoda tough chal raha hai.<br><br>
 Please maaf kar do na…  
 Ek baar waise hi muskura do ❤️<br><br>
-
 Forever Yours,<br>
 Raj 💖
 </p>
+<button class="btn" onclick="showPromise()">One Last Thing ❤️</button>
+</div>
+
+<!-- PROMISE -->
+<div class="promise" id="promise">
+<h2>My Promises 💍</h2>
+<p style="animation-delay:0.5s;">💖 I promise to respect your feelings.</p>
+<p style="animation-delay:1s;">💖 I promise to tell you everything.</p>
+<p style="animation-delay:1.5s;">💖 I promise to fight problems, not you.</p>
+<p style="animation-delay:2s;">💖 I promise to stay even in tough times.</p>
+<p style="animation-delay:2.5s;font-weight:bold;">I choose you. Every single day ❤️</p>
 </div>
 
 <script>
 let clickCount = 0;
-const heart = document.getElementById("heart");
-const envelope = document.getElementById("envelope");
-const letter = document.getElementById("letter");
-const bgVideo = document.getElementById("bgVideo");
 
-heart.addEventListener("click", function(){
+function startEnvelope(){
+document.getElementById("welcome").style.display="none";
+document.getElementById("envelope").style.display="block";
+}
 
+document.getElementById("heart").addEventListener("click",function(){
 clickCount++;
 
-if(clickCount === 1){
-heart.classList.add("shake");
+if(clickCount===1){
 navigator.vibrate && navigator.vibrate(100);
-setTimeout(()=>heart.classList.remove("shake"),400);
 }
-
-else if(clickCount === 2){
-heart.classList.add("shake");
+else if(clickCount===2){
 navigator.vibrate && navigator.vibrate(200);
-setTimeout(()=>heart.classList.remove("shake"),400);
 }
-
-else if(clickCount === 3){
-envelope.classList.add("open");
-bgVideo.classList.add("blur");
+else if(clickCount===3){
+document.getElementById("envelope").classList.add("open");
+document.getElementById("bgVideo").classList.add("blur");
 
 setTimeout(()=>{
-letter.classList.add("show-letter");
+document.getElementById("letter").classList.add("show");
 },1500);
 }
-
 });
+
+function showPromise(){
+document.getElementById("letter").style.display="none";
+document.getElementById("promise").style.display="block";
+}
 </script>
 
 </body>
