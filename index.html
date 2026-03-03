@@ -1,89 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Holi My Love ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Nandani ❤️</title>
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;}
 
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      font-family: Arial, sans-serif;
-      color: white;
-    }
+body{
+overflow:hidden;
+}
 
-    .navbar {
-      background: rgba(0,0,0,0.5);
-    }
+/* Background Video */
+video{
+position:fixed;
+right:0;
+bottom:0;
+min-width:100%;
+min-height:100%;
+object-fit:cover;
+z-index:-2;
+transition:0.8s ease;
+}
 
-    .navbar-brand {
-      font-size: 22px;
-      font-weight: bold;
-    }
+.overlay{
+position:fixed;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.3);
+z-index:-1;
+transition:0.8s ease;
+}
 
-    .myinfo {
-      position: relative;
-      top: 30vh;
-      z-index: 2;
-      padding: 20px;
-    }
+/* Blur Effect */
+.blur{
+filter:blur(8px);
+transform:scale(1.05);
+}
 
-    video {
-      position: fixed;
-      right: 0;
-      bottom: 0;
-      min-width: 100%;
-      min-height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
+/* Center Container */
+.center{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+}
 
-    .love-btn {
-      margin-top: 20px;
-    }
-  </style>
+/* Envelope */
+.envelope{
+width:280px;
+height:180px;
+background:#f5e6d3;
+position:relative;
+border-radius:10px;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+transition:1.5s ease;
+}
+
+/* Flap */
+.flap{
+position:absolute;
+width:0;
+height:0;
+border-left:140px solid transparent;
+border-right:140px solid transparent;
+border-bottom:90px solid #e6d2bd;
+top:-90px;
+left:0;
+transition:1.5s ease;
+transform-origin:bottom;
+}
+
+/* Heart Button */
+.heart{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+font-size:40px;
+cursor:pointer;
+animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+0%{transform:translate(-50%,-50%) scale(1);}
+50%{transform:translate(-50%,-50%) scale(1.1);}
+100%{transform:translate(-50%,-50%) scale(1);}
+}
+
+/* Shake animation */
+.shake{
+animation:shake 0.4s;
+}
+
+@keyframes shake{
+0%{transform:translate(-50%,-50%) rotate(0deg);}
+25%{transform:translate(-50%,-50%) rotate(2deg);}
+50%{transform:translate(-50%,-50%) rotate(-2deg);}
+75%{transform:translate(-50%,-50%) rotate(2deg);}
+100%{transform:translate(-50%,-50%) rotate(0deg);}
+}
+
+/* Open State */
+.open .flap{
+transform:rotateX(180deg);
+}
+
+/* Letter */
+.letter{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:90%;
+max-width:400px;
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 15px 40px rgba(0,0,0,0.5);
+display:none;
+opacity:0;
+transition:1s ease;
+}
+
+.letter h2{
+text-align:center;
+margin-bottom:15px;
+}
+
+.show-letter{
+display:block;
+opacity:1;
+}
+</style>
 </head>
 
 <body>
 
-  <nav class="navbar navbar-expand-lg fixed-top">
-    <div class="container">
-      <a class="navbar-brand text-white" href="#">
-        Happy Holi By Raj 💖
-      </a>
-    </div>
-  </nav>
+<video autoplay loop muted id="bgVideo">
+<source src="Happy Holi 2024 By CWS.mp4" type="video/mp4">
+</video>
 
-  <div class="myinfo">
-    <h1>Happy Holi My Love ❤️</h1>
-    <h2>I am your Raj, your pookie 💕</h2>
+<div class="overlay"></div>
 
-    <p>
-      Wishing you and your loved ones a very colourful and beautiful Holi 💜💛<br><br>
-      May every colour bring happiness in your life,<br>
-      May all your worries fade away like dry colours in water 🌈<br><br>
-      You are the most special colour in my life,<br>
-      Without you everything feels incomplete ❤️
-    </p>
+<div class="center">
+<div class="envelope" id="envelope">
+<div class="flap"></div>
+<div class="heart" id="heart">❤️</div>
+</div>
+</div>
 
-    <button class="btn btn-danger love-btn" onclick="showLove()">
-      Click For a Surprise 💌
-    </button>
-  </div>
+<div class="letter" id="letter">
+<h2>My Letter To You 💌</h2>
+<p>
+Nandani,<br><br>
 
-  <video autoplay loop muted>
-    <source src="Happy Holi 2024 By CWS.mp4" type="video/mp4">
-  </video>
+Sabse pehle… I’m really sorry.  
+Main maanta hoon meri galti thi.  
+Mujhe tumhe batana chahiye tha.<br><br>
 
-  <script>
-    function showLove() {
-      alert("Happy Holi My Love ❤️ Forever Yours – Raj 💖");
-    }
-  </script>
+Par jab tum mujhse door rehti ho na…  
+sach me dil heavy ho jata hai.  
+Tum hi bolti ho na — hum dono ek hain ❤️<br><br>
+
+Mujhe abhi tak yaad hai wo din  
+jab tum pehli baar rusi thi…  
+bench pe jaake baith gayi thi,  
+aur jab main gaya tha…  
+gussa karne ke jagah tum sharmaane lagi thi 💕<br><br>
+
+Main ladka hoon, galti ho jaati hai…  
+par tum meri life ka sabse important part ho.  
+Hamra relationship sabse acha hai,  
+bas time thoda sa tough chal raha hai.<br><br>
+
+Please maaf kar do na…  
+Ek baar waise hi muskura do ❤️<br><br>
+
+Forever Yours,<br>
+Raj 💖
+</p>
+</div>
+
+<script>
+let clickCount = 0;
+const heart = document.getElementById("heart");
+const envelope = document.getElementById("envelope");
+const letter = document.getElementById("letter");
+const bgVideo = document.getElementById("bgVideo");
+
+heart.addEventListener("click", function(){
+
+clickCount++;
+
+if(clickCount === 1){
+heart.classList.add("shake");
+navigator.vibrate && navigator.vibrate(100);
+setTimeout(()=>heart.classList.remove("shake"),400);
+}
+
+else if(clickCount === 2){
+heart.classList.add("shake");
+navigator.vibrate && navigator.vibrate(200);
+setTimeout(()=>heart.classList.remove("shake"),400);
+}
+
+else if(clickCount === 3){
+envelope.classList.add("open");
+bgVideo.classList.add("blur");
+
+setTimeout(()=>{
+letter.classList.add("show-letter");
+},1500);
+}
+
+});
+</script>
 
 </body>
 </html>
