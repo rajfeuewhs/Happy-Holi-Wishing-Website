@@ -22,7 +22,7 @@ transition:1s ease;
 }
 
 .blur{
-filter:blur(8px);
+filter:blur(10px);
 transform:scale(1.05);
 }
 
@@ -54,6 +54,12 @@ color:white;
 font-size:16px;
 cursor:pointer;
 margin-top:20px;
+opacity:0;
+transition:1s ease;
+}
+
+.showBtn{
+opacity:1;
 }
 
 /* ENVELOPE */
@@ -130,22 +136,26 @@ top:50%;left:50%;
 transform:translate(-50%,-50%);
 width:90%;max-width:420px;
 display:none;
-color:white;
 }
 
 .promise-box{
-background:rgba(255,255,255,0.1);
-padding:25px;
+background:rgba(0,0,0,0.6);
+padding:30px;
 border-radius:20px;
-backdrop-filter:blur(10px);
-box-shadow:0 15px 40px rgba(0,0,0,0.5);
+box-shadow:0 15px 40px rgba(0,0,0,0.6);
 }
 
-.final-line{
+.final{
 margin-top:20px;
-font-size:20px;
+font-size:22px;
 font-weight:bold;
 color:#ffccd5;
+animation:fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
 }
 </style>
 </head>
@@ -158,14 +168,14 @@ color:#ffccd5;
 
 <div class="overlay"></div>
 
-<!-- WELCOME -->
+<!-- STAGE 1 -->
 <div class="center" id="welcome">
 <h1>Happy Holi My Love ❤️</h1>
 <p>I am your Raj, your pookie 💕</p>
-<button class="btn" onclick="startEnvelope()">Tap To Begin 💌</button>
+<button class="btn" id="beginBtn" onclick="startEnvelope()">Tap To Begin 💌</button>
 </div>
 
-<!-- ENVELOPE -->
+<!-- STAGE 2 -->
 <div class="center">
 <div class="envelope" id="envelope">
 <div class="flap"></div>
@@ -173,38 +183,46 @@ color:#ffccd5;
 </div>
 </div>
 
-<!-- LETTER -->
+<!-- STAGE 3 -->
 <div class="letter" id="letter">
 <h3>My Letter To You 💌</h3>
 <p id="letterText"></p>
 <span class="cursor"></span><br>
-<button class="btn" onclick="showPromise()">One Last Thing ❤️</button>
+<button class="btn showBtn" id="nextBtn" style="display:none;" onclick="showPromise()">Continue ❤️</button>
 </div>
 
-<!-- PROMISE -->
+<!-- FINAL PROMISE -->
 <div class="promise" id="promise">
 <div class="promise-box">
-<h3>New Holi, New Start 💖</h3>
 <p id="promiseText"></p>
-<div class="final-line">Please Nandani, My Love ❤️</div>
+<div class="final">Please Nandani, My Love ❤️</div>
 </div>
 </div>
 
 <script>
-let clickCount=0;
+const video=document.getElementById("bgVideo");
+const beginBtn=document.getElementById("beginBtn");
+
+/* Show button only in last 1 sec */
+video.addEventListener("timeupdate",function(){
+if(video.duration - video.currentTime <= 1){
+beginBtn.classList.add("showBtn");
+}
+});
 
 function startEnvelope(){
 document.getElementById("welcome").style.display="none";
 document.getElementById("envelope").style.display="block";
 }
 
+let clickCount=0;
 document.getElementById("heart").addEventListener("click",function(){
 clickCount++;
 if(clickCount===1){navigator.vibrate&&navigator.vibrate(100);}
 else if(clickCount===2){navigator.vibrate&&navigator.vibrate(200);}
 else if(clickCount===3){
 document.getElementById("envelope").classList.add("open");
-document.getElementById("bgVideo").classList.add("blur");
+video.classList.add("blur");
 setTimeout(()=>{
 document.getElementById("letter").style.display="block";
 typeLetter();
@@ -214,27 +232,24 @@ typeLetter();
 
 const letterMessage=`Nandani,
 
-I’m really sorry... I know meri galti thi.
-Par jab tum door rehti ho na, dil heavy ho jata hai.
-
-Tum hi bolti ho hum dono ek hain ❤️
+I’m really sorry...
 Hamra relationship sabse acha hai,
 bas time thoda tough chal raha hai.
 
-Please maaf kar do na...
-Ek baar waise hi muskura do ❤️
+Please maaf kar do na ❤️
 
 Forever Yours,
 Raj 💖`;
 
 function typeLetter(){
 let i=0;
-let speed=40;
 function typing(){
 if(i<letterMessage.length){
 document.getElementById("letterText").innerHTML+=letterMessage.charAt(i);
 i++;
-setTimeout(typing,speed);
+setTimeout(typing,40);
+}else{
+document.getElementById("nextBtn").style.display="inline-block";
 }
 }
 typing();
@@ -248,10 +263,7 @@ typePromise();
 
 const promiseMessage=`Yaar sab baatein bhula dete hain na...
 
-Iss Holi hum naye rang se apni story shuru karte hain 🌈
-Jo bhi misunderstanding thi,
-unhe paani me ghul jaane dete hain jaise Holi ke rang 💕
-
+Iss Holi naye rang se shuru karte hain 🌈
 New Holi.
 New Start.
 Same Love.
@@ -259,12 +271,11 @@ But stronger than before ❤️`;
 
 function typePromise(){
 let i=0;
-let speed=40;
 function typing(){
 if(i<promiseMessage.length){
 document.getElementById("promiseText").innerHTML+=promiseMessage.charAt(i);
 i++;
-setTimeout(typing,speed);
+setTimeout(typing,40);
 }
 }
 typing();
